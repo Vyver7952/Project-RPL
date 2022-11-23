@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nasabah;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class NasabahController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,10 @@ class NasabahController extends Controller
      */
     public function index()
     {
-        //
+        return view('users.index', [
+            "title" => "Users",
+            "logo" => "Logo.png"
+        ]);
     }
 
     /**
@@ -41,10 +44,10 @@ class NasabahController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Nasabah  $nasabah
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Nasabah $nasabah)
+    public function show(User $user)
     {
         //
     }
@@ -52,10 +55,10 @@ class NasabahController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Nasabah  $nasabah
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Nasabah $nasabah)
+    public function edit(User $user)
     {
         //
     }
@@ -64,10 +67,10 @@ class NasabahController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Nasabah  $nasabah
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nasabah $nasabah)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -75,10 +78,10 @@ class NasabahController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Nasabah  $nasabah
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nasabah $nasabah)
+    public function destroy(User $user)
     {
         //
     }

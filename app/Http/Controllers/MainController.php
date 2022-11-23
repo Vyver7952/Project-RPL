@@ -7,22 +7,8 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function home(){
-        return view('dashboard.index', [
+        return view('home.index', [
             "title" => "Home",
-            "logo" => "Logo.png"
-        ]);
-    }
-
-    public function peminjaman(){
-        return view('peminjaman.index', [
-            "title" => "Peminjaman",
-            "logo" => "Logo.png"
-        ]);
-    }
-
-    public function simpanan(){
-        return view('simpanan.index', [
-            "title" => "Simpanan",
             "logo" => "Logo.png"
         ]);
     }

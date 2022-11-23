@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,9 @@ Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
-Route::get('/home', [MainController::class, 'home']);
-Route::get('/peminjaman', [MainController::class, 'peminjaman']);
-Route::get('/simpanan', [MainController::class, 'simpanan']);
-Route::get('/laporan', [MainController::class, 'laporan']);
+Route::get('/home', [MainController::class, 'home'])->middleware('auth');
+Route::get('/laporan', [MainController::class, 'laporan'])->middleware('auth');
+
+Route::resource('/users', UserController::class)->middleware('auth');
+Route::resource('/peminjaman', UserController::class)->middleware('auth');
+Route::resource('/simpanan', UserController::class)->middleware('auth');
