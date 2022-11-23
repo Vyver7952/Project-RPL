@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Nasabah;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,12 +17,14 @@ class PeminjamanFactory extends Factory
      */
     public function definition()
     {
+        $nasabah = Nasabah::all('id');
+
         return [
             'nominal' => $this->faker->numberBetween(),
             'tanggalPengajuan' => $this->faker->dateTime(),
             'jangkaWaktu' => $this->faker->numberBetween(1, 24),
             'hasilKeputusan' => $this->faker->boolean(),
-            'nasabah_id' => 1
+            'nasabah_id' => $this->faker->randomElement($nasabah)
         ];
     }
 }

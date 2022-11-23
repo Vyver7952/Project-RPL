@@ -11,7 +11,7 @@ class Simpanan extends Model
 
     protected $guarded = ['id'];
 
-    public function Nasabah(){
+    public function nasabah(){
         return $this->belongsTo(Nasabah::class);
     }
 }

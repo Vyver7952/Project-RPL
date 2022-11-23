@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Nasabah;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,9 +17,11 @@ class SimpananFactory extends Factory
      */
     public function definition()
     {
+        $nasabah = Nasabah::all('id');
+
         return [
             'saldo' => $this->faker->numberBetween(),
-            'nasabah_id' => 1
+            'nasabah_id' => $this->faker->randomElement($nasabah)
         ];
     }
 }

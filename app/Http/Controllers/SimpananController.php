@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Simpanan;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class SimpananController extends Controller
 {
@@ -14,9 +15,14 @@ class SimpananController extends Controller
      */
     public function index()
     {
+        Paginator::useBootstrapFive();
+
+        $simpanan = Simpanan::paginate(10);
+
         return view('simpanan.index', [
             "title" => "Simpanan",
-            "logo" => "Logo.png"
+            "logo" => "Logo.png",
+            "simpanan" => $simpanan
         ]);
     }
 

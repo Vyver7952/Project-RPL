@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <a href="" class="badge bg-success p-2"><span data-feather="plus"></span> Add User</a>
+            <a href="" class="badge bg-success p-2"><span data-feather="plus"></span> Add Peminjaman</a>
         </div>
     </div>
     <table class="table table-striped table-sm">
@@ -34,8 +34,8 @@
             @foreach ($peminjaman as $p)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $p->nasabah_id->nama }}</td>
-                    <td>{{ $p->nominal }}</td>
+                    <td>{{ $p->nasabah->nama }}</td>
+                    <td>@convert($p->nominal)</td>
                     <td>{{ $p->tanggalPengajuan }}</td>
                     <td>{{ $p->jangkaWaktu }}</td>
                     @if ($p->hasilKeputusan)

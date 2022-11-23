@@ -11,11 +11,11 @@ class Nasabah extends Model
 
     protected $guarded = ['id'];
 
-    public function Simpanan(){
+    public function simpanan(){
         return $this->hasOne(Simpanan::class);
     }
 
-    public function Peminjaman(){
+    public function peminjaman(){
         return $this->hasOne(Peminjaman::class);
     }
 }
