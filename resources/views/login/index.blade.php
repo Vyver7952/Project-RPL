@@ -14,6 +14,21 @@
 
 <body>
     <div class="wrapper">
+
+        @if (session()->has('loginError'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('loginError') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if (session()->has('logout'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('logout') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <div class="logo">
             <img src="img/{{ $logo }}" alt="logo" />
         </div>
@@ -21,18 +36,34 @@
             Koperasi Arta Pratama
         </div>
 
-        <form action="/login" class="p-3 mt-3">
-            @csrf
-            <div class="form-field d-flex align-items-center">
-                <span class="far fa-user"></span>
-                <input type="text" name="userName" id="userName" placeholder="Username">
-            </div>
-            <div class="form-field d-flex align-items-center">
-                <span class="fas fa-key"></span>
-                <input type="password" name="password" id="pwd" placeholder="Password">
-            </div>
-            <button class="btn mt-3" type="submit">Login</button>
-        </form>
+        <div class="p-3 mt-3">
+            <form action="/login" method="POST">
+                @csrf
+                <div class="form-field d-flex align-items-center">
+                    <span class="far fa-user"></span>
+                    <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
+                        id="username" placeholder="Username" autofocus required>
+                    @error('username')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="form-field d-flex align-items-center">
+                    <span class="fas fa-key"></span>
+                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+                        id="password" placeholder="Password" required>
+                    @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <button class="btn mt-3" type="submit">Login</button>
+            </form>
+        </div>
     </div>
 </body>
 
