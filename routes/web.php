@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\SimpananController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,5 +28,5 @@ Route::get('/home', [MainController::class, 'home'])->middleware('auth');
 Route::get('/laporan', [MainController::class, 'laporan'])->middleware('auth');
 
 Route::resource('/users', UserController::class)->middleware('auth');
-Route::resource('/peminjaman', UserController::class)->middleware('auth');
-Route::resource('/simpanan', UserController::class)->middleware('auth');
+Route::resource('/peminjaman', PeminjamanController::class)->middleware('auth');
+Route::resource('/simpanan', SimpananController::class)->middleware('auth');

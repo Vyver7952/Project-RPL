@@ -14,4 +14,8 @@ class Nasabah extends Model
     public function Simpanan(){
         return $this->hasOne(Simpanan::class);
     }
+
+    public function Peminjaman(){
+        return $this->hasOne(Peminjaman::class);
+    }
 }

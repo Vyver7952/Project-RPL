@@ -39,5 +39,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
             'is_admin' => False
         ]);
+
+        User::factory(50)->create();
     }
 }

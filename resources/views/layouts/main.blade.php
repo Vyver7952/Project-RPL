@@ -13,6 +13,7 @@
 
     {{-- Bootstrap Icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <script src="https://unpkg.com/feather-icons"></script>
 
     {{-- Sidebar --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -27,7 +28,7 @@
 
     @include('partial.sidebar')
 
-    <div class="height-100 bg-light">
+    <div class="container-fluid bg-light">
         @yield('container')
     </div>
 

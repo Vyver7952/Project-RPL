@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class PeminjamanController extends Controller
 {
@@ -14,9 +15,14 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
+        Paginator::useBootstrapFive();
+
+        $peminjaman = Peminjaman::paginate(10);
+
         return view('peminjaman.index', [
             "title" => "Peminjaman",
-            "logo" => "Logo.png"
+            "logo" => "Logo.png",
+            "peminjaman" => $peminjaman
         ]);
     }
 

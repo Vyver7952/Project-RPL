@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class UserController extends Controller
 {
@@ -14,9 +15,13 @@ class UserController extends Controller
      */
     public function index()
     {
+        Paginator::useBootstrapFive();
+
+        $users = User::paginate(10);
         return view('users.index', [
             "title" => "Users",
-            "logo" => "Logo.png"
+            "logo" => "Logo.png",
+            "users" => $users
         ]);
     }
 
@@ -49,7 +54,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return $user;
     }
 
     /**
