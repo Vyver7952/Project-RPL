@@ -18,7 +18,6 @@ class NasabahController extends Controller
 
         return view('nasabah.index', [
             "title" => "Nasabah",
-            "logo" => "Logo.png",
             "nasabah" => $nasabah
         ]);
     }

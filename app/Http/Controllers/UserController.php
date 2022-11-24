@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
 
 class UserController extends Controller
 {
@@ -19,7 +18,6 @@ class UserController extends Controller
 
         return view('users.index', [
             "title" => "Users",
-            "logo" => "Logo.png",
             "users" => $users
         ]);
     }
@@ -31,7 +29,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create', [
+            "title" => "Create User",
+            "totaluser" => User::all()->count() + 1
+        ]);
     }
 
     /**
@@ -42,7 +43,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'username' => 'required|unique:users',
+            'password' => 'required|confirmed|min:8',
+            'is_admin' => 'required|boolean'
+        ]);
+
+        $validateData['password'] = bcrypt($validateData['password']);
+
+        User::create($validateData);
+
+        return redirect('/users')->with('successAdd', "New User has been added!");
     }
 
     /**
@@ -53,7 +66,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return $user;
+        return view('users.show', [
+            "title" => "Users",
+            "user" => $user
+        ]);
     }
 
     /**

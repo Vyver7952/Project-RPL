@@ -17,16 +17,14 @@
     <div class="wrapper">
 
         @if (session()->has('loginError'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger" role="alert">
                 {{ session('loginError') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
 
         @if (session()->has('logout'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <div class="alert alert-success" role="alert">
                 {{ session('logout') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
 

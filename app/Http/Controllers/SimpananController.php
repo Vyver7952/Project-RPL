@@ -19,7 +19,6 @@ class SimpananController extends Controller
 
         return view('simpanan.index', [
             "title" => "Simpanan",
-            "logo" => "Logo.png",
             "simpanan" => $simpanan
         ]);
     }

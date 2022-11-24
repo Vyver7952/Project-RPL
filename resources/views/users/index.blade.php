@@ -1,6 +1,12 @@
 @extends('layouts.main')
 
 @section('container')
+    @if (session()->has('successAdd'))
+        <div class="alert alert-success alert-dismissible mx-auto" role="alert">
+            {{ session('successAdd') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="table-title">
         <div class="row">
             <div class="col-sm-8">
@@ -16,7 +22,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <a href="" class="badge bg-success p-2"><span data-feather="plus"></span> Add User</a>
+            <a href="/users/create" class="badge bg-success p-2"><span data-feather="plus"></span> Add User</a>
         </div>
     </div>
     <table class="table table-striped table-sm">
@@ -45,7 +51,7 @@
                     <td>
                         <a href="/users/{{ $user->id }}" class="badge bg-primary" id="detailProductModal"><span
                                 data-feather="eye"></span></a>
-                        <a href="" class="badge bg-warning"><span data-feather="edit"></span></a>
+                        <a href="/users/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
                         <a href="" class="badge bg-danger"><span data-feather="trash-2"></span></a>
                     </td>
                 </tr>

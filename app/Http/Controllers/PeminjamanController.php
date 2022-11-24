@@ -18,7 +18,6 @@ class PeminjamanController extends Controller
 
         return view('peminjaman.index', [
             "title" => "Peminjaman",
-            "logo" => "Logo.png",
             "peminjaman" => $peminjaman
         ]);
     }
