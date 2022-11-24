@@ -43,7 +43,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'username' => 'required|unique:users',
@@ -51,11 +51,11 @@ class UserController extends Controller
             'is_admin' => 'required|boolean'
         ]);
 
-        $validateData['password'] = bcrypt($validateData['password']);
+        $validatedData['password'] = bcrypt($validatedData['password']);
 
-        User::create($validateData);
+        User::create($validatedData);
 
-        return redirect('/users')->with('successAdd', "New User has been added!");
+        return redirect('/users')->with('success', "New User has been added!");
     }
 
     /**
@@ -67,7 +67,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         return view('users.show', [
-            "title" => "Users",
+            "title" => "View User",
             "user" => $user
         ]);
     }
@@ -80,7 +80,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', [
+            "title" => "Edit User",
+            "user" => $user
+        ]);
     }
 
     /**
@@ -92,7 +95,27 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $rules = [
+            'name' => 'required',
+            'password' => 'required|confirmed|min:8',
+            'is_admin' => 'required|boolean'
+        ];
+
+        if ($request->email != $user->email) {
+            $rules['email'] = 'required|email|unique:users';
+        }
+
+        if ($request->username != $user->username) {
+            $rules['username'] = 'required|unique:users';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        $validatedData['password'] = bcrypt($validatedData['password']);
+
+        User::updateorCreate(['id' => $user->id], $validatedData);
+
+        return redirect('/users')->with('success', "User has been updated!");
     }
 
     /**
@@ -103,6 +126,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+
+        return redirect('/users')->with('success', "User has been deleted!");
     }
 }

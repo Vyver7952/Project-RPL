@@ -18,7 +18,7 @@
                     disabled>
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">E-mail</label>
+                <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}"
                     disabled>
             </div>
@@ -29,39 +29,26 @@
             </div>
             <div class="mb-3">
                 <legend for="is_admin" class="col-form-label">Admin</legend>
-                @if ($user->is_admin)
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="is_admin" id="isadmin_yes" value="1"
-                            checked>
-                        <label class="form-check-label" for="isadmin_yes">Ya</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="is_admin" id="isadmin_no" value="0"
-                            checked>
-                        <label class="form-check-label" for="isadmin_no">Tidak</label>
-                    </div>
-                @else
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="is_admin" id="isadmin_yes" value="1"
-                            checked>
-                        <label class="form-check-label" for="isadmin_yes">Ya</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="is_admin" id="isadmin_no" value="0"
-                            checked>
-                        <label class="form-check-label" for="isadmin_no">Tidak</label>
-                    </div>
-                @endif
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="is_admin" id="isadmin_yes" value="1"
+                        {{ $user->is_admin == true ? 'checked' : '' }} disabled>
+                    <label class="form-check-label" for="isadmin_yes">Ya</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="is_admin" id="isadmin_no" value="0"
+                        {{ $user->is_admin == false ? 'checked' : '' }} disabled>
+                    <label class="form-check-label" for="isadmin_no">Tidak</label>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="created_at" class="form-label">Tanggal Pembuatan</label>
-                <input type="text" class="form-control" id="created_at" name="created_at" value="{{ \Carbon\Carbon::parse($user->created_at)->format('D, d M Y') }}"
-                    disabled>
+                <input type="text" class="form-control" id="created_at" name="created_at"
+                    value="{{ \Carbon\Carbon::parse($user->created_at)->format('D, d M Y') }}" disabled>
             </div>
             <div class="mb-3">
                 <label for="updated_at" class="form-label">Terakhir di Update</label>
-                <input type="text" class="form-control" id="updated_at" name="updated_at" value="{{ \Carbon\Carbon::parse($user->updated_at)->format('D, d M Y') }}"
-                    disabled>
+                <input type="text" class="form-control" id="updated_at" name="updated_at"
+                    value="{{ \Carbon\Carbon::parse($user->updated_at)->format('D, d M Y') }}" disabled>
             </div>
         </form>
         <a href="/users" class="btn btn-danger">Back</a>

@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('container')
-    @if (session()->has('successAdd'))
-        <div class="alert alert-success alert-dismissible mx-auto" role="alert">
-            {{ session('successAdd') }}
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible mx-auto col-sm-3" role="alert">
+            {{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
@@ -30,7 +30,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama</th>
-                <th scope="col">E-mail</th>
+                <th scope="col">Email</th>
+                <th scope="col">Username</th>
                 <th scope="col">Password</th>
                 <th scope="col">Is Admin</th>
                 <th scope="col">Action</th>
@@ -42,6 +43,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>{{ $user->username }}</td>
                     <td>{{ $user->password }}</td>
                     @if ($user->is_admin)
                         <td>Yes</td>
@@ -51,8 +53,12 @@
                     <td>
                         <a href="/users/{{ $user->id }}" class="badge bg-primary" id="detailProductModal"><span
                                 data-feather="eye"></span></a>
-                        <a href="/users/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
-                        <a href="" class="badge bg-danger"><span data-feather="trash-2"></span></a>
+                        <a href="/users/{{ $user->id }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
+                        <form action="/users/{{ $user->id }}" method="post" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span data-feather="trash-2"></button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
