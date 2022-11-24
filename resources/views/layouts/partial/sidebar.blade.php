@@ -45,7 +45,5 @@
 
                 </div>
             </div>
-            {{-- <a href="/logout" class="nav_link"> <i data-feather="log-out"></i> <span class="nav_name">Logout</span>
-            </a> --}}
         </nav>
     </div>

@@ -46,7 +46,7 @@ a {
     font-size: 1.5rem;
     cursor: pointer;
 }
-.header_img {
+.header_txt {
     width: 35px;
     height: 35px;
     display: flex;
@@ -54,7 +54,7 @@ a {
     border-radius: 50%;
     overflow: hidden;
 }
-.header_img img {
+.header_txt i {
     width: 40px;
 }
 .l-navbar {
@@ -136,11 +136,11 @@ a {
         height: calc(var(--header-height) + 1rem);
         padding: 0 2rem 0 calc(var(--nav-width) + 2rem);
     }
-    .header_img {
-        width: 40px;
+    .header_text {
+        width: auto;
         height: 40px;
     }
-    .header_img img {
+    .header_text i {
         width: 45px;
     }
     .l-navbar {
@@ -148,7 +148,7 @@ a {
         padding: 1rem 1rem 0 0;
     }
     .show {
-        width: calc(var(--nav-width) + 190px);
+        width: calc(var(--navbar-width) + 190px);
     }
     .body-pd {
         padding-left: calc(var(--nav-width) + 222px);
