@@ -1,12 +1,13 @@
 <body id="body-pd">
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle" onclick="change()"></i> </div>
-        <div class="header_img">
+        <div class="header_text">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <i class="bi bi-person-circle nav_icon"></i>
+                        <i class="bi bi-person-circle nav_icon"></i> <span
+                            class="nav_name">{{ auth()->user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/logout"> <i data-feather="log-out"></i>
@@ -44,7 +45,7 @@
 
                 </div>
             </div>
-            <a href="/logout" class="nav_link"> <i data-feather="log-out"></i> <span class="nav_name">Logout</span>
-            </a>
+            {{-- <a href="/logout" class="nav_link"> <i data-feather="log-out"></i> <span class="nav_name">Logout</span>
+            </a> --}}
         </nav>
     </div>
