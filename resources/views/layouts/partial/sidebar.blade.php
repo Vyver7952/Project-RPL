@@ -4,7 +4,7 @@
         <div class="header_text">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <i class="bi bi-person-circle nav_icon"></i> <span
                             class="nav_name">{{ auth()->user()->name }}</span>

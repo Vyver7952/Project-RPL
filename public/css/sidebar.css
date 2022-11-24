@@ -148,7 +148,7 @@ a {
         padding: 1rem 1rem 0 0;
     }
     .show {
-        width: calc(var(--navbar-width) + 190px);
+        width: calc(var(--nav-width) + 190px);
     }
     .body-pd {
         padding-left: calc(var(--nav-width) + 222px);
