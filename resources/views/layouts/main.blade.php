@@ -25,7 +25,7 @@
 
 <body>
 
-    @include('partial.sidebar')
+    @include('layouts.partial.sidebar')
 
     <div class="container-fluid bg-light">
         @yield('container')

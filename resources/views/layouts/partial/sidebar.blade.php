@@ -39,7 +39,7 @@
 
                     @if (auth()->user()->is_admin)
                         <a href="/users" class="nav_link {{ Request::is('users') ? 'active' : '' }}"> <i
-                                class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a>
+                                class="bi bi-person-lock nav_icon"></i> <span class="nav_name">Users</span> </a>
                     @endif
 
                 </div>
