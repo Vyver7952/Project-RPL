@@ -14,7 +14,13 @@ class NasabahController extends Controller
      */
     public function index()
     {
-        //
+        $nasabah = Nasabah::paginate(10);
+
+        return view('nasabah.index', [
+            "title" => "Nasabah",
+            "logo" => "Logo.png",
+            "nasabah" => $nasabah
+        ]);
     }
 
     /**

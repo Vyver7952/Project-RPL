@@ -15,9 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        Paginator::useBootstrapFive();
-
         $users = User::paginate(10);
+
         return view('users.index', [
             "title" => "Users",
             "logo" => "Logo.png",

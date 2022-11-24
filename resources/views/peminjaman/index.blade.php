@@ -2,16 +2,17 @@
 
 @section('container')
     <div class="table-title">
-        <div class="row row-cols-2">
+        <div class="row">
             <div class="col-sm-8">
-                <h2>Users <b>Details</b></h2>
+                <h2><b>Detail</b> Peminjaman</h2>
             </div>
             <div class="col-sm-4">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
-                    <input type="text" class="form-control" placeholder="Search" aria-label="Search"
-                        aria-describedby="basic-addon1">
-                </div>
+                <form action="/peminjaman">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Search..." name="search">
+                        <button class="btn btn-outline-secondary" type="submit"> <i class="bi bi-search"></i> </button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="d-flex justify-content-end">

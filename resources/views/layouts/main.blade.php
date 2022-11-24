@@ -21,7 +21,6 @@
 
     {{-- Public CSS --}}
     <link rel="stylesheet" href="css/sidebar.css">
-
 </head>
 
 <body>

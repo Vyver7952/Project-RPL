@@ -4,10 +4,10 @@
     <div class="table-title">
         <div class="row">
             <div class="col-sm-8">
-                <h2><b>Detail</b> Simpanan</h2>
+                <h2><b>Detail</b> Nasabah</h2>
             </div>
             <div class="col-sm-4">
-                <form action="/simpanan">
+                <form action="/nasabah">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Search..." name="search">
                         <button class="btn btn-outline-secondary" type="submit"> <i class="bi bi-search"></i> </button>
@@ -15,31 +15,27 @@
                 </form>
             </div>
         </div>
-        <div class="d-flex justify-content-end">
-            <a href="" class="badge bg-success p-2"><span data-feather="plus"></span> Add Simpanan</a>
-        </div>
     </div>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama Nasabah</th>
-                <th scope="col">Saldo Simpanan</th>
-                <th scope="col">Transaksi Terakhir</th>
+                <th scope="col">Tanggal Registrasi</th>
+                <th scope="col">Terakhir di Update</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($simpanan as $s)
+            @foreach ($nasabah as $n)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $s->nasabah->nama }}</td>
-                    <td>@convert($s->saldo)</td>
-                    <td>{{ $s->updated_at }}</td>
+                    <td>{{ $n->nama }}</td>
+                    <td>{{ $n->created_at }}</td>
+                    <td>{{ $n->updated_at }}</td>
                     <td>
-                        <a href="/simpanan/{{ $s->id }}" class="badge bg-primary"><span
+                        <a href="/nasabah/{{ $n->id }}" class="badge bg-primary"><span
                                 data-feather="eye"></span></a>
-                        <a href="" class="badge bg-warning"><span data-feather="edit"></span></a>
-                        <a href="" class="badge bg-danger"><span data-feather="trash-2"></span></a>
                     </td>
                 </tr>
             @endforeach
@@ -47,5 +43,5 @@
     </table>
 
     <br>
-    {{ $simpanan->onEachSide(1)->links() }}
+    {{ $nasabah->onEachSide(1)->links() }}
 @endsection
