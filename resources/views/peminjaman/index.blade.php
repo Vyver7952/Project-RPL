@@ -37,7 +37,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $p->nasabah->nama }}</td>
                     <td>@convert($p->nominal)</td>
-                    <td>{{ $p->tanggalPengajuan }}</td>
+                    <td>{{ \Carbon\Carbon::parse($p->tanggalPengajuan)->format('D, d M Y H:i:s') }}</td>
                     <td>{{ $p->jangkaWaktu }}</td>
                     @if ($p->hasilKeputusan)
                         <td>Yes</td>

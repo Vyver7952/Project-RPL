@@ -1,6 +1,13 @@
 @extends('layouts.main')
 
 @section('container')
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible mx-auto col-sm-3" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="table-title">
         <div class="row">
             <div class="col-sm-8">
@@ -16,7 +23,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <a href="" class="badge bg-success p-2"><span data-feather="plus"></span> Add Simpanan</a>
+            <a href="/simpanan/create" class="badge bg-success p-2"><span data-feather="plus"></span> Add Simpanan</a>
         </div>
     </div>
     <table class="table table-striped table-sm">
@@ -26,6 +33,7 @@
                 <th scope="col">Nama Nasabah</th>
                 <th scope="col">Saldo Simpanan</th>
                 <th scope="col">Transaksi Terakhir</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -34,12 +42,18 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $s->nasabah->nama }}</td>
                     <td>@convert($s->saldo)</td>
-                    <td>{{ $s->updated_at }}</td>
+                    <td>{{ \Carbon\Carbon::parse($s->updated_at)->format('D, d M Y H:i:s') }}</td>
                     <td>
                         <a href="/simpanan/{{ $s->id }}" class="badge bg-primary"><span
                                 data-feather="eye"></span></a>
-                        <a href="" class="badge bg-warning"><span data-feather="edit"></span></a>
-                        <a href="" class="badge bg-danger"><span data-feather="trash-2"></span></a>
+                        {{-- <a href="/simpanan/{{ $s->id }}/edit" class="badge bg-warning"><span
+                                data-feather="edit"></span></a> --}}
+                        <form action="/simpanan/{{ $s->id }}" method="post" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span
+                                    data-feather="trash-2"></button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

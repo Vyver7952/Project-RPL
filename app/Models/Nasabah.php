@@ -18,4 +18,12 @@ class Nasabah extends Model
     public function peminjaman(){
         return $this->hasOne(Peminjaman::class);
     }
+
+    public function transaksisimpanan(){
+        return $this->belongsToMany(TransaksiSimpanan::class);
+    }
+
+    public function setorcicilan(){
+        return $this->belongsToMany(SetorCicilan::class);
+    }
 }

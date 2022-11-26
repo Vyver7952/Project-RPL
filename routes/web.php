@@ -1,5 +1,6 @@
 <?php
 
+// use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\SimpananController;
 use App\Http\Controllers\PeminjamanController;
+// use App\Http\Controllers\TransaksiSimpananController;
 
 /*
 |--------------------------------------------------------------------------

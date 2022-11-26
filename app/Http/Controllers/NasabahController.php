@@ -51,7 +51,10 @@ class NasabahController extends Controller
      */
     public function show(Nasabah $nasabah)
     {
-        //
+        return view('nasabah.show', [
+            "title" => "View Nasabah",
+            "nasabah" => $nasabah
+        ]);
     }
 
     /**

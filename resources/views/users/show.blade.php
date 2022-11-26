@@ -43,12 +43,12 @@
             <div class="mb-3">
                 <label for="created_at" class="form-label">Tanggal Pembuatan</label>
                 <input type="text" class="form-control" id="created_at" name="created_at"
-                    value="{{ \Carbon\Carbon::parse($user->created_at)->format('D, d M Y') }}" disabled>
+                    value="{{ \Carbon\Carbon::parse($user->created_at)->format('D, d M Y H:i:s') }}" disabled>
             </div>
             <div class="mb-3">
                 <label for="updated_at" class="form-label">Terakhir di Update</label>
                 <input type="text" class="form-control" id="updated_at" name="updated_at"
-                    value="{{ \Carbon\Carbon::parse($user->updated_at)->format('D, d M Y') }}" disabled>
+                    value="{{ \Carbon\Carbon::parse($user->updated_at)->format('D, d M Y H:i:s') }}" disabled>
             </div>
         </form>
         <a href="/users" class="btn btn-danger">Back</a>

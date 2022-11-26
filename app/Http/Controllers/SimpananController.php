@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Simpanan;
+use App\Models\Nasabah;
+use App\Models\TransaksiSimpanan;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
 
 class SimpananController extends Controller
 {
@@ -30,7 +31,11 @@ class SimpananController extends Controller
      */
     public function create()
     {
-        //
+        return view('simpanan.create', [
+            "title" => "Create Simpanan",
+            "idsimpanan" => Simpanan::all()->count() + 1,
+            "nasabah" => Nasabah::all()
+        ]);
     }
 
     /**
@@ -41,7 +46,25 @@ class SimpananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nasabah_id' => 'required',
+            'saldo' => 'required|numeric|min:5',
+        ]);
+        $validatedData['nominal'] = $validatedData['saldo'];
+
+        if(!empty(Nasabah::find($validatedData['nasabah_id'])->simpanan->saldo)){
+            $validatedData['saldo'] += Nasabah::find($validatedData['nasabah_id'])->simpanan->saldo;
+            $validatedData['simpanan_id'] = Nasabah::find($validatedData['nasabah_id'])->simpanan->id;
+        } else {
+            $validatedData['simpanan_id'] = $request->idsimpanan;
+        }
+        $validatedData['status'] = "Setor";
+        $validatedData['saldo_total'] = $validatedData['saldo'];
+
+        Simpanan::updateorCreate(['nasabah_id' => $validatedData['nasabah_id']], $validatedData);
+        TransaksiSimpanan::create($validatedData);
+
+        return redirect('/simpanan')->with('success', "Simpanan has been created!");
     }
 
     /**
@@ -52,7 +75,14 @@ class SimpananController extends Controller
      */
     public function show(Simpanan $simpanan)
     {
-        //
+        $transaksi = TransaksiSimpanan::where('simpanan_id', 'like', $simpanan->id)
+                                        ->paginate(5);
+
+        return view('simpanan.show', [
+            "title" => "View Simpanan",
+            "simpanan" => $simpanan,
+            "transaksi" => $transaksi
+        ]);
     }
 
     /**
@@ -63,7 +93,10 @@ class SimpananController extends Controller
      */
     public function edit(Simpanan $simpanan)
     {
-        //
+        return view('simpanan.edit', [
+            "title" => "Edit Simpanan",
+            "simpanan" => $simpanan
+        ]);
     }
 
     /**
@@ -86,6 +119,8 @@ class SimpananController extends Controller
      */
     public function destroy(Simpanan $simpanan)
     {
-        //
+        Simpanan::destroy($simpanan->id);
+
+        return redirect('/simpanan')->with('success', "Simpanan has been deleted!");
     }
 }

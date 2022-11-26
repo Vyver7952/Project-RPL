@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         return view('users.create', [
             "title" => "Create User",
-            "totaluser" => User::all()->count() + 1
+            "iduser" => User::all()->count() + 1
         ]);
     }
 

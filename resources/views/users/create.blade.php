@@ -10,7 +10,7 @@
             @csrf
             <div class="mb-3">
                 <label for="userid" class="form-label">User ID</label>
-                <input type="text" class="form-control" id="userid" name="userid" value="U-@Lpad($totaluser)" readonly>
+                <input type="text" class="form-control" id="userid" name="userid" value="U-@Lpad($iduser)" readonly>
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Nama</label>

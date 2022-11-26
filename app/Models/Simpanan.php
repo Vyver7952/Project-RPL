@@ -14,4 +14,8 @@ class Simpanan extends Model
     public function nasabah(){
         return $this->belongsTo(Nasabah::class);
     }
+
+    public function transaksisimpanan(){
+        return $this->belongsToMany(TransaksiSimpanan::class);
+    }
 }
