@@ -8,7 +8,7 @@
         </div>
     @endif
 
-    <div class="table-title">
+    <div class="table-title border-bottom mb-3">
         <div class="row">
             <div class="col-sm-8">
                 <h2><b>Detail</b> Simpanan</h2>
@@ -22,8 +22,18 @@
                 </form>
             </div>
         </div>
-        <div class="d-flex justify-content-end">
-            <a href="/simpanan/create" class="badge bg-success p-2"><span data-feather="plus"></span> Add Simpanan</a>
+        <div class="row mb-3">
+            <div class="col sm-8">
+                <div class="d-flex justify-content-end">
+                    <a href="/simpanan/create" class="badge bg-success p-2" name="add"><span data-feather="plus"></span> Tambah Transaksi Simpanan</a>
+                </div>
+            </div>
+            {{-- <div class="col-sm-4">
+                <div class="d-flex justify-content-end ">
+                    <a href="/simpanan/setor" class="badge bg-success p-2 mx-2" name="setor"><span data-feather="plus"></span> Setor Simpanan</a>
+                    <a href="/simpanan/tarik" class="badge bg-success p-2 " name="tarik"><span data-feather="plus"></span> Tarik Simpanan</a>
+                </div>
+            </div> --}}
         </div>
     </div>
     <table class="table table-striped table-sm">

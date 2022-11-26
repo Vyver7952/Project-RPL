@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="table-title">
+    <div class="table-title border-bottom mb-3">
         <div class="row">
             <div class="col-sm-8">
                 <h2><b>Detail</b> Peminjaman</h2>
@@ -15,7 +15,7 @@
                 </form>
             </div>
         </div>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end mb-3">
             <a href="" class="badge bg-success p-2"><span data-feather="plus"></span> Add Peminjaman</a>
         </div>
     </div>

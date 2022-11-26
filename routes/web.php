@@ -8,6 +8,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\SimpananController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\TransaksiSimpananController;
+
 // use App\Http\Controllers\TransaksiSimpananController;
 
 /*
@@ -34,3 +36,6 @@ Route::resource('/users', UserController::class)->middleware('auth');
 Route::resource('/nasabah', NasabahController::class)->middleware('auth');
 Route::resource('/peminjaman', PeminjamanController::class)->middleware('auth');
 Route::resource('/simpanan', SimpananController::class)->middleware('auth');
+
+// Route::get('/simpanan/setor', [TransaksiSimpananController::class, 'indexsetor'])->middleware('auth');
+// Route::get('/simpanan/tarik', [TransaksiSimpananController::class, 'indextarik'])->middleware('auth');

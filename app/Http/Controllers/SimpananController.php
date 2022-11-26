@@ -32,7 +32,7 @@ class SimpananController extends Controller
     public function create()
     {
         return view('simpanan.create', [
-            "title" => "Create Simpanan",
+            "title" => "Simpanan",
             "idsimpanan" => Simpanan::all()->count() + 1,
             "nasabah" => Nasabah::all()
         ]);
@@ -49,22 +49,39 @@ class SimpananController extends Controller
         $validatedData = $request->validate([
             'nasabah_id' => 'required',
             'saldo' => 'required|numeric|min:5',
+            'status' => 'required'
         ]);
+
+        $alert = "";
         $validatedData['nominal'] = $validatedData['saldo'];
 
-        if(!empty(Nasabah::find($validatedData['nasabah_id'])->simpanan->saldo)){
-            $validatedData['saldo'] += Nasabah::find($validatedData['nasabah_id'])->simpanan->saldo;
-            $validatedData['simpanan_id'] = Nasabah::find($validatedData['nasabah_id'])->simpanan->id;
+        if (!empty(Nasabah::find($validatedData['nasabah_id'])->simpanan->saldo)) {
+            $saldo = Nasabah::find($validatedData['nasabah_id'])->simpanan->saldo;
+            $idsimpanan = Nasabah::find($validatedData['nasabah_id'])->simpanan->id;
+
+            if ($validatedData['status'] == 'Setor') {
+                $validatedData['saldo'] += $saldo;
+            } else if ($validatedData['status'] == 'Tarik') {
+                $validatedData['saldo'] = $saldo - $validatedData['saldo'];
+            }
+            $validatedData['simpanan_id'] = $idsimpanan;
+            $alert = "Simpanan has been updated!";
         } else {
-            $validatedData['simpanan_id'] = $request->idsimpanan;
+            if ($validatedData['status'] == "Setor") {
+                $validatedData['status'] = "Setor";
+                $validatedData['simpanan_id'] = $request->idsimpanan;
+                $alert = "Simpanan has been created!";
+            } else {
+                $alert = "Nasabah tidak memiliki simpanan";
+                return redirect('/simpanan')->with('success', $alert);
+            }
         }
-        $validatedData['status'] = "Setor";
         $validatedData['saldo_total'] = $validatedData['saldo'];
 
         Simpanan::updateorCreate(['nasabah_id' => $validatedData['nasabah_id']], $validatedData);
         TransaksiSimpanan::create($validatedData);
 
-        return redirect('/simpanan')->with('success', "Simpanan has been created!");
+        return redirect('/simpanan')->with('success', $alert);
     }
 
     /**
@@ -76,7 +93,7 @@ class SimpananController extends Controller
     public function show(Simpanan $simpanan)
     {
         $transaksi = TransaksiSimpanan::where('simpanan_id', 'like', $simpanan->id)
-                                        ->paginate(5);
+            ->paginate(5);
 
         return view('simpanan.show', [
             "title" => "View Simpanan",

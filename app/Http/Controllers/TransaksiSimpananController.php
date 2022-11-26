@@ -9,5 +9,14 @@ use Illuminate\Http\Request;
 
 class TransaksiSimpananController extends Controller
 {
-
+//     public function indexsetor(){
+//         return view('simpanan.setor', [
+//             'title'=>'Setor Simpanan'
+//         ]);
+//     }
+//     public function indextarik(){
+//         return view('simpanan.tarik', [
+//             'title'=>'Tarik Simpanan'
+//         ]);
+//     }
 }

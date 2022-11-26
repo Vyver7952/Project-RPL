@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="table-title">
+    <div class="table-title border-bottom mb-3">
         <div class="row">
             <div class="col-sm-8">
                 <h2><b>Detail</b> Nasabah</h2>

@@ -2,11 +2,11 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Create New Transaksi Simpanan</h1>
+        <h1 class="h2">Create New Simpanan</h1>
     </div>
 
     <div class="col-lg-8 mx-auto">
-        <form action="/simpanan" method="post">
+        <form action="/simpanan/setor" method="post">
             @csrf
             <div class="mb-3">
                 <label for="simpanid" class="form-label">ID Simpanan</label>
@@ -35,7 +35,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <legend for="status" class="col-form-label">Jenis Transaksi</legend>
                 @error('status')
                     <p class="text-danger">{{ $message }}</p>
@@ -50,7 +50,7 @@
                         type="radio" name="status" id="tarik" value="Tarik" required>
                     <label class="form-check-label" for="tarik">Tarik</label>
                 </div>
-            </div>
+            </div> --}}
             <button type="submit" class="btn btn-primary">Create Simpanan</button>
             <a href="/simpanan" class="btn btn-danger">Cancel</a>
         </form>
