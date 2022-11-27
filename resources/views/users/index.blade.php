@@ -42,20 +42,20 @@
             @foreach ($users as $user)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->username }}</td>
-                    <td>{{ $user->password }}</td>
+                    <td>{{ $user['name'] }}</td>
+                    <td>{{ $user['email'] }}</td>
+                    <td>{{ $user['username'] }}</td>
+                    <td>{{ $user['password'] }}</td>
                     @if ($user->is_admin)
                         <td>Yes</td>
                     @else
                         <td>No</td>
                     @endif
                     <td>
-                        <a href="/users/{{ $user->id }}" class="badge bg-primary" id="detailProductModal"><span
+                        <a href="/users/{{ $user['id'] }}" class="badge bg-primary" id="detailProductModal"><span
                                 data-feather="eye"></span></a>
-                        <a href="/users/{{ $user->id }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
-                        <form action="/users/{{ $user->id }}" method="post" class="d-inline">
+                        <a href="/users/{{ $user['id'] }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
+                        <form action="/users/{{ $user['id'] }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span data-feather="trash-2"></button>
