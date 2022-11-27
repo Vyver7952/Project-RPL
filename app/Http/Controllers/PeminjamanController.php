@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Nasabah;
 use App\Models\Peminjaman;
+use App\Models\SetorCicilan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PeminjamanController extends Controller
 {
@@ -29,7 +32,14 @@ class PeminjamanController extends Controller
      */
     public function create()
     {
-        //
+        $id = DB::select("SHOW TABLE STATUS LIKE 'peminjamen'");
+        $next_id = $id[0]->Auto_increment;
+
+        return view('peminjaman.create', [
+            "title" => "Peminjaman",
+            "idpeminjaman" => $next_id,
+            "nasabah" => Nasabah::all()
+        ]);
     }
 
     /**
@@ -51,7 +61,14 @@ class PeminjamanController extends Controller
      */
     public function show(Peminjaman $peminjaman)
     {
-        //
+        $transaksi = SetorCicilan::where('peminjaman_id', 'like', $peminjaman->id)
+            ->paginate(5);
+
+        return view('peminjaman.show', [
+            "title" => "View Peminjaman",
+            "peminjaman" => $peminjaman,
+            "transaksi" => $transaksi
+        ]);
     }
 
     /**

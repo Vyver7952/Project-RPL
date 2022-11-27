@@ -1,6 +1,13 @@
 @extends('layouts.main')
 
 @section('container')
+@if (session()->has('alert'))
+        <div class="alert alert-danger alert-dismissible mx-auto col-sm-3" role="alert">
+            {{ session('alert') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Create New Transaksi Simpanan</h1>
     </div>
@@ -51,7 +58,7 @@
                     <label class="form-check-label" for="tarik">Tarik</label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Create Simpanan</button>
+            <button type="submit" class="btn btn-primary">Create Transaksi Simpanan</button>
             <a href="/simpanan" class="btn btn-danger">Cancel</a>
         </form>
     </div>

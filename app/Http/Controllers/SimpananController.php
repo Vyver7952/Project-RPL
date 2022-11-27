@@ -6,6 +6,7 @@ use App\Models\Simpanan;
 use App\Models\Nasabah;
 use App\Models\TransaksiSimpanan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SimpananController extends Controller
 {
@@ -31,9 +32,12 @@ class SimpananController extends Controller
      */
     public function create()
     {
+        $id = DB::select("SHOW TABLE STATUS LIKE 'simpanans'");
+        $next_id = $id[0]->Auto_increment;
+
         return view('simpanan.create', [
             "title" => "Simpanan",
-            "idsimpanan" => Simpanan::all()->count() + 1,
+            "idsimpanan" => $next_id,
             "nasabah" => Nasabah::all()
         ]);
     }
@@ -68,12 +72,12 @@ class SimpananController extends Controller
             $alert = "Simpanan has been updated!";
         } else {
             if ($validatedData['status'] == "Setor") {
-                $validatedData['status'] = "Setor";
+                // $validatedData['status'] = "Setor";
                 $validatedData['simpanan_id'] = $request->idsimpanan;
                 $alert = "Simpanan has been created!";
             } else {
                 $alert = "Nasabah tidak memiliki simpanan";
-                return redirect('/simpanan')->with('success', $alert);
+                return redirect('/simpanan/create')->with('alert', $alert);
             }
         }
         $validatedData['saldo_total'] = $validatedData['saldo'];

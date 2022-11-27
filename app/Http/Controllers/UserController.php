@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -29,9 +30,12 @@ class UserController extends Controller
      */
     public function create()
     {
+        $id = DB::select("SHOW TABLE STATUS LIKE 'users'");
+        $next_id = $id[0]->Auto_increment;
+
         return view('users.create', [
             "title" => "Create User",
-            "iduser" => User::all()->count() + 1
+            "iduser" => $next_id
         ]);
     }
 

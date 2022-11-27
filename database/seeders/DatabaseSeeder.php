@@ -29,11 +29,24 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
             'is_admin' => True
         ]);
-
         User::factory()->create([
             'name' => 'Herlambang Agung Sukmono',
             'email' => '205314147@student.usd.ac.id',
             'username' => 'herlambangagung',
+            'password' => bcrypt('password'),
+            'is_admin' => False
+        ]);
+        User::factory()->create([
+            'name' => 'Jeanytha Gein',
+            'email' => '205314153@student.usd.ac.id',
+            'username' => 'jeanythagein',
+            'password' => bcrypt('password'),
+            'is_admin' => False
+        ]);
+        User::factory()->create([
+            'name' => 'Patricia Dian Paska',
+            'email' => '205314152@student.usd.ac.id',
+            'username' => 'patriciadian',
             'password' => bcrypt('password'),
             'is_admin' => False
         ]);

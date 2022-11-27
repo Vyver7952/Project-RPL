@@ -21,7 +21,7 @@ class SimpananFactory extends Factory
 
         return [
             'saldo' => $this->faker->numberBetween(),
-            'nasabah_id' => $this->faker->randomElement($nasabah)
+            'nasabah_id' => $this->faker->unique()->randomElement($nasabah)
         ];
     }
 }
