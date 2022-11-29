@@ -21,6 +21,10 @@
 
     {{-- Public CSS --}}
     <link href="{{ URL::asset('css/sidebar.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ URL::asset('css/dashboard.css') }}" rel="stylesheet" type="text/css" >
+
+    {{-- Font Awesome --}}
+    <script src="https://kit.fontawesome.com/916c8d4a68.js" crossorigin="anonymous"></script>
 </head>
 
 <body>

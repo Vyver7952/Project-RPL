@@ -75,6 +75,9 @@ a {
     justify-content: space-between;
     overflow: hidden;
 }
+/* .nav-bg{
+    background-color: #4723d9;
+} */
 .nav_logo,
 .nav_link {
     display: grid;

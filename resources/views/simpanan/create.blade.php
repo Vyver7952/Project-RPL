@@ -25,7 +25,7 @@
                 <select class="form-select" name="nasabah_id">
                     <option disabled selected hidden>Pilih Nasabah</option>
                     @foreach ($nasabah as $n)
-                        <option value="{{ $n->id }}">N-@Lpad($n->id) --- {{ $n->nama }}</option>
+                        <option value="{{ $n['id'] }}">N-@Lpad($n->id) --- {{ $n['nama'] }}</option>
                     @endforeach
                 </select>
             </div>

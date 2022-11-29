@@ -28,12 +28,6 @@
                     <a href="/simpanan/create" class="badge bg-success p-2" name="add"><span data-feather="plus"></span> Tambah Transaksi Simpanan</a>
                 </div>
             </div>
-            {{-- <div class="col-sm-4">
-                <div class="d-flex justify-content-end ">
-                    <a href="/simpanan/setor" class="badge bg-success p-2 mx-2" name="setor"><span data-feather="plus"></span> Setor Simpanan</a>
-                    <a href="/simpanan/tarik" class="badge bg-success p-2 " name="tarik"><span data-feather="plus"></span> Tarik Simpanan</a>
-                </div>
-            </div> --}}
         </div>
     </div>
     <table class="table table-striped table-sm">
@@ -50,15 +44,15 @@
             @foreach ($simpanan as $s)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $s->nasabah->nama }}</td>
+                    <td>{{ $s['nasabah']->nama }}</td>
                     <td>@convert($s->saldo)</td>
-                    <td>{{ \Carbon\Carbon::parse($s->updated_at)->format('D, d M Y H:i:s') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($s['updated_at'])->format('D, d M Y H:i:s') }}</td>
                     <td>
-                        <a href="/simpanan/{{ $s->id }}" class="badge bg-primary"><span
+                        <a href="/simpanan/{{ $s['id'] }}" class="badge bg-primary"><span
                                 data-feather="eye"></span></a>
                         {{-- <a href="/simpanan/{{ $s->id }}/edit" class="badge bg-warning"><span
                                 data-feather="edit"></span></a> --}}
-                        <form action="/simpanan/{{ $s->id }}" method="post" class="d-inline">
+                        <form action="/simpanan/{{ $s['id'] }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span

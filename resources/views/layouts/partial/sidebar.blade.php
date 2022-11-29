@@ -2,7 +2,7 @@
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle" onclick="change()"></i> </div>
         <div class="header_text">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -10,11 +10,15 @@
                             class="nav_name">{{ auth()->user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        {{-- <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li class="ms-auto"> {{ auth()->user()->name }} </li>
+                        <div class="text-center">
+                            <i class="bi bi-person-circle fa-7x"></i>
+                            <p class="text-black">Welcome, {{ auth()->user()->name }}</p>
+                        </div>
+                        <li class="text-center">
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
-                        </li> --}}
+                        </li>
                         <li><a class="dropdown-item" href="/logout"> <i data-feather="log-out"></i>
                                 <span class="nav_name">Logout</span>
                             </a></li>

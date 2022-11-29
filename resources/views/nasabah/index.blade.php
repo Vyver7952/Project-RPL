@@ -30,11 +30,11 @@
             @foreach ($nasabah as $n)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $n->nama }}</td>
-                    <td>{{ \Carbon\Carbon::parse($n->created_at)->format('D, d M Y H:i:s') }}</td>
-                    <td>{{ \Carbon\Carbon::parse($n->updated_at)->format('D, d M Y H:i:s') }}</td>
+                    <td>{{ $n['nama'] }}</td>
+                    <td>{{ \Carbon\Carbon::parse($n['created_at'])->format('D, d M Y H:i:s') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($n['updated_at'])->format('D, d M Y H:i:s') }}</td>
                     <td>
-                        <a href="/nasabah/{{ $n->id }}" class="badge bg-primary"><span
+                        <a href="/nasabah/{{ $n['id'] }}" class="badge bg-primary"><span
                                 data-feather="eye"></span></a>
                     </td>
                 </tr>

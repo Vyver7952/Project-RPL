@@ -35,20 +35,25 @@
             @foreach ($peminjaman as $p)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $p->nasabah->nama }}</td>
+                    <td>{{ $p['nasabah']->nama }}</td>
                     <td>@convert($p->nominal)</td>
-                    <td>{{ \Carbon\Carbon::parse($p->tanggalPengajuan)->format('D, d M Y H:i:s') }}</td>
-                    <td>{{ $p->jangkaWaktu }}</td>
+                    <td>{{ \Carbon\Carbon::parse($p['tanggalPengajuan'])->format('D, d M Y H:i:s') }}</td>
+                    <td>{{ $p['jangkaWaktu'] }}</td>
                     @if ($p->hasilKeputusan)
                         <td>Yes</td>
                     @else
                         <td>No</td>
                     @endif
                     <td>
-                        <a href="/peminjaman/{{ $p->id }}" class="badge bg-primary"><span
+                        <a href="/peminjaman/{{ $p['id'] }}" class="badge bg-primary"><span
                                 data-feather="eye"></span></a>
-                        <a href="" class="badge bg-warning"><span data-feather="edit"></span></a>
-                        <a href="" class="badge bg-danger"><span data-feather="trash-2"></span></a>
+                        {{-- <a href="" class="badge bg-warning"><span data-feather="edit"></span></a> --}}
+                        <form action="/peminjaman/{{ $p['id'] }}" method="post" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span
+                                    data-feather="trash-2"></button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
