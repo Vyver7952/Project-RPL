@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Nasabah::factory(50)->create();
-        Simpanan::factory(20)->create();
+        Nasabah::factory(100)->create();
+        Simpanan::factory(50)->create();
         Peminjaman::factory(20)->create();
 
         User::factory()->create([
