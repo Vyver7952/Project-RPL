@@ -16,3 +16,7 @@
 
     {{-- Font Awesome --}}
     <script src="https://kit.fontawesome.com/916c8d4a68.js" crossorigin="anonymous"></script>
+
+    {{-- Chart Js --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

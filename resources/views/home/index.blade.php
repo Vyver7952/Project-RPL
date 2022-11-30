@@ -85,7 +85,7 @@
     </div>
 
     <div class="row">
-        @include('chart.line')
-        @include('chart.pie')
+        @include('home.chart.line')
+        @include('home.chart.pie')
     </div>
 @endsection
