@@ -114,10 +114,10 @@ class SimpananController extends Controller
      */
     public function edit(Simpanan $simpanan)
     {
-        return view('simpanan.edit', [
-            "title" => "Edit Simpanan",
-            "simpanan" => $simpanan
-        ]);
+        // return view('simpanan.edit', [
+        //     "title" => "Edit Simpanan",
+        //     "simpanan" => $simpanan
+        // ]);
     }
 
     /**

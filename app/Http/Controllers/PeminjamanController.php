@@ -79,7 +79,10 @@ class PeminjamanController extends Controller
      */
     public function edit(Peminjaman $peminjaman)
     {
-        //
+        return view('peminjaman.edit', [
+            "title" => "Edit Peminjaman",
+            "peminjaman" => $peminjaman
+        ]);
     }
 
     /**
@@ -102,6 +105,8 @@ class PeminjamanController extends Controller
      */
     public function destroy(Peminjaman $peminjaman)
     {
-        //
+        Peminjaman::destroy($peminjaman->id);
+
+        return redirect('/peminjaman')->with('success', "Peminjaman has been deleted!");
     }
 }

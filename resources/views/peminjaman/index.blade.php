@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-end mb-3">
-            <a href="" class="badge bg-success p-2"><span data-feather="plus"></span> Add Peminjaman</a>
+            <a href="/peminjaman/create" class="badge bg-success p-2"><span data-feather="plus"></span> Add Peminjaman</a>
         </div>
     </div>
     <table class="table table-striped table-sm">
@@ -36,7 +36,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $p['nasabah']->nama }}</td>
-                    <td>@convert($p->nominal)</td>
+                    <td>@convert($p['nominal'])</td>
                     <td>{{ \Carbon\Carbon::parse($p['tanggalPengajuan'])->format('D, d M Y H:i:s') }}</td>
                     <td>{{ $p['jangkaWaktu'] }}</td>
                     @if ($p->hasilKeputusan)
@@ -47,7 +47,9 @@
                     <td>
                         <a href="/peminjaman/{{ $p['id'] }}" class="badge bg-primary"><span
                                 data-feather="eye"></span></a>
-                        {{-- <a href="" class="badge bg-warning"><span data-feather="edit"></span></a> --}}
+                        @if (auth()->user()->is_admin)
+                            <a href="/peminjaman/{{ $p['id'] }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
+                        @endif
                         <form action="/peminjaman/{{ $p['id'] }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
