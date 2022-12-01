@@ -72,7 +72,6 @@ class SimpananController extends Controller
             $alert = "Simpanan has been updated!";
         } else {
             if ($validatedData['status'] == "Setor") {
-                // $validatedData['status'] = "Setor";
                 $validatedData['simpanan_id'] = $request->idsimpanan;
                 $alert = "Simpanan has been created!";
             } else {

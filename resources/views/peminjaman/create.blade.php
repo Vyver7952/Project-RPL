@@ -16,50 +16,54 @@
         <form action="/peminjaman" method="post">
             @csrf
             <div class="mb-3">
-                <label for="peminjamanid" class="form-label">ID Simpanan</label>
+                <label for="peminjamanid" class="form-label">ID Peminjaman</label>
                 <input type="text" class="form-control" id="peminjamanid" name="peminjamanid" value="P-@Lpad($idpeminjaman)" readonly>
-                <input type="text" class="form-control" id="idpeminjaman" name="idpeminjaman" value="{{ $idpeminjaman }}" readonly hidden>
             </div>
             <div class="mb-3">
                 <label for="nasabah_id" class="form-label">Nasabah</label>
                 <select class="form-select" name="nasabah_id">
                     <option disabled selected hidden>Pilih Nasabah</option>
                     @foreach ($nasabah as $n)
-                        <option value="{{ $n['id'] }}">N-@Lpad($n->id) --- {{ $n['nama'] }}</option>
+                        <option value="{{ $n['id'] }}">N-@Lpad($n['id']) --- {{ $n['nama'] }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-3">
-                <label for="saldo" class="form-label">Nominal</label>
+                <label for="nominal" class="form-label">Nominal</label>
                 <div class="input-group">
                     <span class="input-group-text">Rp</span>
-                    <input type="text" class="form-control @error('saldo') is-invalid @enderror" id="saldo"
-                        name="saldo" value="{{ old('saldo') }}" required>
-                    @error('saldo')
+                    <input type="text" class="form-control @error('nominal') is-invalid @enderror" id="nominal"
+                        name="nominal" value="{{ old('nominal') }}" required>
+                    @error('nominal')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
             </div>
+            {{-- <div class="mb-3">
+                <label for="syaratPeminjaman" class="form-label">Dokumen Peminjaman</label>
+                <div class="input-group">
+                    <input type="file" class="form-control @error('syaratPeminjaman') is-invalid @enderror" id="syaratPeminjaman"
+                        name="syaratPeminjaman" required>
+                    @error('syaratPeminjaman')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+            </div> --}}
             <div class="mb-3">
-                <legend for="hasilKeputusan" class="col-form-label">Hasil Keputusan</legend>
-                @error('hasilKeputusan')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input @error('hasilKeputusan') is-invalid @enderror"
-                        type="radio" name="hasilKeputusan" id="hasilKeputusan_yes" value="1" required>
-                    <label class="form-check-label" for="hasilKeputusan_yes">Ya</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input @error('hasilKeputusan') is-invalid @enderror"
-                        type="radio" name="hasilKeputusan" id="hasilKeputusan_no" value="0" required checked>
-                    <label class="form-check-label" for="hasilKeputusan_no">Tidak</label>
-                </div>
+                <label for="jangkaWaktu" class="form-label">Jangka Waktu</label>
+                <select class="form-select" name="jangkaWaktu">
+                    <option disabled selected hidden>Pilih Jangka Waktu</option>
+                    @foreach ($jangkaWaktu as $waktu)
+                        <option value="{{ $waktu }}">{{ $waktu }}</option>
+                    @endforeach
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Create Peminjaman</button>
-            <a href="/simpanan" class="btn btn-danger">Cancel</a>
+            <a href="/peminjaman" class="btn btn-danger">Cancel</a>
         </form>
     </div>
 @endsection

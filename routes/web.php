@@ -1,6 +1,5 @@
 <?php
 
-// use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
@@ -8,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\SimpananController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\SetorCicilanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +32,5 @@ Route::get('/laporan', [MainController::class, 'laporan'])->middleware('auth');
 Route::resource('/users', UserController::class)->middleware('auth');
 Route::resource('/nasabah', NasabahController::class)->middleware('auth');
 Route::resource('/peminjaman', PeminjamanController::class)->middleware('auth');
+Route::resource('/peminjaman/setor', SetorCicilanController::class)->middleware('auth');
 Route::resource('/simpanan', SimpananController::class)->middleware('auth');

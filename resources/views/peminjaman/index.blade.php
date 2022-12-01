@@ -1,6 +1,13 @@
 @extends('layouts.main')
 
 @section('container')
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible mx-auto col-sm-3" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="table-title border-bottom mb-3">
         <div class="row">
             <div class="col-sm-8">
@@ -48,7 +55,8 @@
                         <a href="/peminjaman/{{ $p['id'] }}" class="badge bg-primary"><span
                                 data-feather="eye"></span></a>
                         @if (auth()->user()->is_admin)
-                            <a href="/peminjaman/{{ $p['id'] }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
+                            <a href="/peminjaman/{{ $p['id'] }}/edit" class="badge bg-warning"><span
+                                    data-feather="edit"></span></a>
                         @endif
                         <form action="/peminjaman/{{ $p['id'] }}" method="post" class="d-inline">
                             @method('delete')
@@ -56,6 +64,8 @@
                             <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span
                                     data-feather="trash-2"></button>
                         </form>
+                        {{-- <a href="/peminjaman/setor/{{ $p['id'] }}/edit" class="badge bg-success p-2"><span
+                                class="fa-solid fa-hand-holding-dollar fa-lg"></span> Setor Peminjaman</a> --}}
                     </td>
                 </tr>
             @endforeach

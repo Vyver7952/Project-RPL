@@ -17,7 +17,7 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $peminjaman = Peminjaman::paginate(10);
+        $peminjaman = Peminjaman::orderby('tanggalPengajuan', 'desc')->paginate(10);
 
         return view('peminjaman.index', [
             "title" => "Peminjaman",
@@ -34,11 +34,14 @@ class PeminjamanController extends Controller
     {
         $id = DB::select("SHOW TABLE STATUS LIKE 'peminjamen'");
         $next_id = $id[0]->Auto_increment;
+        $result = Nasabah::doesntHave('peminjaman')->get();
+        $time = [1, 3, 6, 8, 12];
 
         return view('peminjaman.create', [
             "title" => "Peminjaman",
             "idpeminjaman" => $next_id,
-            "nasabah" => Nasabah::all()
+            "nasabah" => $result,
+            "jangkaWaktu" => $time
         ]);
     }
 
@@ -50,7 +53,18 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nasabah_id' => 'required',
+            'nominal' => 'required|numeric',
+            'jangkaWaktu' => 'required'
+            // 'syaratPeminjaman' => 'required'
+        ]);
+        $validatedData['tanggalPengajuan'] = now();
+        $validatedData['hasilKeputusan'] = false;
+
+        Peminjaman::create($validatedData);
+
+        return redirect('/peminjaman')->with('success', 'Peminjaman have been created!');
     }
 
     /**
@@ -94,7 +108,18 @@ class PeminjamanController extends Controller
      */
     public function update(Request $request, Peminjaman $peminjaman)
     {
-        //
+        $rules = [
+            'nasabah_id' => 'required',
+            'nominal' => 'required',
+            'tanggalPengajuan' => 'required',
+            'jangkaWaktu' => 'required',
+            'hasilKeputusan' => 'required|boolean'
+        ];
+        $validatedData = $request->validate($rules);
+
+        Peminjaman::updateorCreate(['id' => $peminjaman->id], $validatedData);
+
+        return redirect('/peminjaman')->with('success', "Peminjaman has been updated!");
     }
 
     /**
