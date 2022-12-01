@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2"><b>Edit Peminjaman</b> | {{ $peminjaman->nasabah['nama'] }}</h1>
+        <h1 class="h2"><b>Edit Peminjaman</b> | {{ $peminjaman['nasabah']->nama }}</h1>
     </div>
 
     <div class="col-lg-8 mx-auto">
@@ -17,9 +17,9 @@
             <div class="mb-3">
                 <label for="nasabahidDummy" class="form-label">Nasabah</label>
                 <input type="text" class="form-control" id="nasabahidDummy" name="nasabahidDummy"
-                    value="{{ $peminjaman->nasabah['nama'] }}" readonly>
+                    value="{{ $peminjaman['nasabah']->nama }}" readonly>
                 <input type="text" class="form-control" id="nasabah_id" name="nasabah_id"
-                    value="{{ $peminjaman->nasabah['id'] }}" readonly hidden>
+                    value="{{ $peminjaman['nasabah']->id }}" readonly hidden>
             </div>
             <div class="mb-3">
                 <label for="nominal" class="form-label">Nominal</label>

@@ -57,8 +57,8 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ \Carbon\Carbon::parse($t['created_at'])->format('D, d M Y H:i:s') }}</td>
-                    <td>@convert($t['nominal'])</td>
-                    <td>@convert($t['saldo_total'])</td>
+                    <td>@convert($t['nominalSetor'])</td>
+                    <td>@convert($t['sisaPembayaran'])</td>
                 </tr>
             @endforeach
         </tbody>

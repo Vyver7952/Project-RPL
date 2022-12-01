@@ -34,7 +34,8 @@ class PeminjamanController extends Controller
     {
         $id = DB::select("SHOW TABLE STATUS LIKE 'peminjamen'");
         $next_id = $id[0]->Auto_increment;
-        $result = Nasabah::doesntHave('peminjaman')->get();
+        // $result = Nasabah::doesntHave('peminjaman')->get();
+        $result = Nasabah::all();
         $time = [1, 3, 6, 8, 12];
 
         return view('peminjaman.create', [
@@ -53,18 +54,40 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nasabah_id' => 'required',
-            'nominal' => 'required|numeric',
-            'jangkaWaktu' => 'required'
-            // 'syaratPeminjaman' => 'required'
-        ]);
-        $validatedData['tanggalPengajuan'] = now();
-        $validatedData['hasilKeputusan'] = false;
+        if ($request->pilihan == 'tambah') {
+            $validatedData = $request->validate([
+                'nasabah_id' => 'required',
+                'nominal' => 'required|numeric',
+                'jangkaWaktu' => 'required'
+                // 'syaratPeminjaman' => 'required'
+            ]);
+            $validatedData['tanggalPengajuan'] = now();
+            $validatedData['hasilKeputusan'] = false;
 
-        Peminjaman::create($validatedData);
+            Peminjaman::create($validatedData);
 
-        return redirect('/peminjaman')->with('success', 'Peminjaman have been created!');
+            return redirect('/peminjaman')->with('success', 'Peminjaman have been created!');
+        } elseif ($request->pilihan == 'setor') {
+            $validatedData = $request->validate([
+                'nasabah_id' => 'required',
+                'nominalSetor' => 'required|numeric',
+            ]);
+            if(!empty(Nasabah::find($validatedData['nasabah_id'])->peminjaman->id)){
+                $idPeminjaman = Nasabah::find($validatedData['nasabah_id'])->peminjaman->id;
+                $nominal = Nasabah::find($validatedData['nasabah_id'])->peminjaman->nominal;
+
+                $validatedData['peminjaman_id'] = $idPeminjaman;
+                $validatedData['sisaPembayaran'] = $nominal - $validatedData['nominalSetor'];
+                // $validatedData['nominal'] = $nominal - $validatedData['nominalSetor'];
+
+                // Peminjaman::updateorCreate(['id' => $idPeminjaman], $validatedData);
+                SetorCicilan::create($validatedData);
+
+                return redirect('/peminjaman')->with('success', 'Peminjaman have been updated!');
+            } else{
+                return redirect('/peminjaman/create')->with('alert', 'Nasabah tidak memiliki Peminjaman!');
+            }
+        }
     }
 
     /**

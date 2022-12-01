@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('nasabah_id');
             $table->foreignId('peminjaman_id');
             $table->integer('nominalSetor');
+            $table->integer('sisaPembayaran');
             $table->timestamps();
         });
     }
