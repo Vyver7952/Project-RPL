@@ -17,9 +17,9 @@
 <body>
     <div class="wrapper">
 
-        @if (session()->has('loginError'))
+        @if (session()->has('error'))
             <div class="alert alert-danger" role="alert">
-                {{ session('loginError') }}
+                {{ session('error') }}
             </div>
         @endif
 

@@ -13,7 +13,7 @@
     </div>
 
     <div class="col-lg-8 mx-auto">
-        <form action="/peminjaman" method="post">
+        <form action="/peminjaman" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="peminjamanid" class="form-label">ID Peminjaman</label>
