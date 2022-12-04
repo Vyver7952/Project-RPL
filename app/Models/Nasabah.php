@@ -26,4 +26,11 @@ class Nasabah extends Model
     public function setorcicilan(){
         return $this->belongsToMany(SetorCicilan::class);
     }
+
+    public function scopeSearch($query, array $filter)
+    {
+        $query->when($filter['search'] ?? false, function($query, $search) {
+            return $query->where('nama', 'like', '%' . $search . '%');
+        });
+    }
 }

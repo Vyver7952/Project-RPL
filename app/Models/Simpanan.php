@@ -18,4 +18,17 @@ class Simpanan extends Model
     public function transaksisimpanan(){
         return $this->belongsToMany(TransaksiSimpanan::class);
     }
+
+    public function scopeSearch($query, array $filter)
+    {
+        $query->when($filter['search'] ?? false, function($query, $search) {
+            return $query->where('nasabah_id', 'like', '%' . $search . '%');
+        });
+
+        $query->when($filter['nasabah'] ?? false, fn($query, $nasabah) =>
+            $query->whereHas('nasabah', fn($query) =>
+                $query->where('nama', $nasabah)
+            )
+        );
+    }
 }

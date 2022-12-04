@@ -17,11 +17,9 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $peminjaman = Peminjaman::orderby('tanggalPengajuan', 'desc')->paginate(10);
-
         return view('peminjaman.index', [
             "title" => "Peminjaman",
-            "peminjaman" => $peminjaman
+            "peminjaman" => Peminjaman::search(request(['search', 'nasabah']))->orderby('tanggalPengajuan', 'desc')->paginate(10)
         ]);
     }
 

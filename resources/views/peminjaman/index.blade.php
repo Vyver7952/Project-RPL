@@ -16,7 +16,11 @@
             <div class="col-sm-4">
                 <form action="/peminjaman">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search..." name="search">
+                        @if (request('nasabah'))
+                            <input type="hidden" class="form-control" name="nasabah" value="{{ request('nasabah') }}">
+                        @endif
+                        <input type="text" class="form-control" placeholder="Search..." name="search"
+                            value="{{ request('search') }}">
                         <button class="btn btn-outline-secondary" type="submit"> <i class="bi bi-search"></i> </button>
                     </div>
                 </form>
@@ -26,52 +30,55 @@
             <a href="/peminjaman/create" class="badge bg-success p-2"><span data-feather="plus"></span> Add Peminjaman</a>
         </div>
     </div>
-    <table class="table table-striped table-sm">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nama Nasabah</th>
-                <th scope="col">Nominal Peminjaman</th>
-                <th scope="col">Tanggal Pengajuan</th>
-                <th scope="col">Jangka Waktu</th>
-                <th scope="col">Hasil Keputusan</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($peminjaman as $p)
+    @if ($peminjaman->count())
+        <table class="table table-striped table-sm">
+            <thead>
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $p['nasabah']->nama }}</td>
-                    <td>@convert($p['nominal'])</td>
-                    <td>{{ \Carbon\Carbon::parse($p['tanggalPengajuan'])->format('D, d M Y H:i:s') }}</td>
-                    <td>{{ $p['jangkaWaktu'] }}</td>
-                    @if ($p->hasilKeputusan)
-                        <td>Yes</td>
-                    @else
-                        <td>No</td>
-                    @endif
-                    <td>
-                        <a href="/peminjaman/{{ $p['id'] }}" class="badge bg-primary"><span
-                                data-feather="eye"></span></a>
-                        @if (auth()->user()->is_admin)
-                            <a href="/peminjaman/{{ $p['id'] }}/edit" class="badge bg-warning"><span
-                                    data-feather="edit"></span></a>
-                        @endif
-                        <form action="/peminjaman/{{ $p['id'] }}" method="post" class="d-inline">
-                            @method('delete')
-                            @csrf
-                            <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span
-                                    data-feather="trash-2"></button>
-                        </form>
-                        {{-- <a href="/peminjaman/setor/{{ $p['id'] }}/edit" class="badge bg-success p-2"><span
-                                class="fa-solid fa-hand-holding-dollar fa-lg"></span> Setor Peminjaman</a> --}}
-                    </td>
+                    <th scope="col">#</th>
+                    <th scope="col">Nama Nasabah</th>
+                    <th scope="col">Nominal Peminjaman</th>
+                    <th scope="col">Tanggal Pengajuan</th>
+                    <th scope="col">Jangka Waktu</th>
+                    <th scope="col">Hasil Keputusan</th>
+                    <th scope="col">Action</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-
+            </thead>
+            <tbody>
+                @foreach ($peminjaman as $p)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $p['nasabah']->nama }}</td>
+                        <td>@convert($p['nominal'])</td>
+                        <td>{{ \Carbon\Carbon::parse($p['tanggalPengajuan'])->format('D, d M Y H:i:s') }}</td>
+                        <td>{{ $p['jangkaWaktu'] }}</td>
+                        @if ($p->hasilKeputusan)
+                            <td>Yes</td>
+                        @else
+                            <td>No</td>
+                        @endif
+                        <td>
+                            <a href="/peminjaman/{{ $p['id'] }}" class="badge bg-primary"><span
+                                    data-feather="eye"></span></a>
+                            @if (auth()->user()->is_admin)
+                                <a href="/peminjaman/{{ $p['id'] }}/edit" class="badge bg-warning"><span
+                                        data-feather="edit"></span></a>
+                            @endif
+                            <form action="/peminjaman/{{ $p['id'] }}" method="post" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span
+                                        data-feather="trash-2"></button>
+                            </form>
+                            {{-- <a href="/peminjaman/setor/{{ $p['id'] }}/edit" class="badge bg-success p-2"><span
+                                class="fa-solid fa-hand-holding-dollar fa-lg"></span> Setor Peminjaman</a> --}}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @else
+        <p class="text-center fs-4">Nasabah Not Found</p>
+    @endif
     <br>
     {{ $peminjaman->onEachSide(1)->links() }}
 @endsection

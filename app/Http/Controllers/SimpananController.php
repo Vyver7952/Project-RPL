@@ -17,11 +17,9 @@ class SimpananController extends Controller
      */
     public function index()
     {
-        $simpanan = Simpanan::paginate(10);
-
         return view('simpanan.index', [
             "title" => "Simpanan",
-            "simpanan" => $simpanan
+            "simpanan" => Simpanan::search(request(['search', 'nasabah']))->paginate(10)
         ]);
     }
 

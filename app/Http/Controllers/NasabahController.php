@@ -14,11 +14,9 @@ class NasabahController extends Controller
      */
     public function index()
     {
-        $nasabah = Nasabah::paginate(10);
-
         return view('nasabah.index', [
             "title" => "Nasabah",
-            "nasabah" => $nasabah
+            "nasabah" => Nasabah::search(request(['search']))->paginate(10)
         ]);
     }
 
