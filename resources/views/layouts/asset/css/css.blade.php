@@ -11,8 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     {{-- Public CSS --}}
-    <link href="{{ URL::asset('css/sidebar.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ URL::asset('css/dashboard.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" type="text/css">
 
     {{-- Font Awesome --}}
     <script src="https://kit.fontawesome.com/916c8d4a68.js" crossorigin="anonymous"></script>

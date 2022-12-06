@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Nasabah;
 use App\Models\Peminjaman;
 use App\Models\Simpanan;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class MainController extends Controller
+class HomeController extends Controller
 {
     public function home()
     {
@@ -29,13 +28,6 @@ class MainController extends Controller
             "dataA" => $dataA,
             "dataPeminjaman" => Peminjaman::count('id'),
             "dataSimpanan" => Simpanan::count('id')
-        ]);
-    }
-
-    public function laporan()
-    {
-        return view('laporan.index', [
-            "title" => "Laporan",
         ]);
     }
 }

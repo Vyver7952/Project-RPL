@@ -50,7 +50,7 @@ class SimpananController extends Controller
     {
         $validatedData = $request->validate([
             'nasabah_id' => 'required',
-            'saldo' => 'required|numeric|min:5',
+            'saldo' => 'required|numeric|min:5|max:10',
             'status' => 'required'
         ]);
 

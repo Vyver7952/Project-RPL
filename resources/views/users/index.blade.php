@@ -54,7 +54,7 @@
                             <td>No</td>
                         @endif
                         <td>
-                            <a href="/users/{{ $user['id'] }}" class="badge bg-primary" id="detailProductModal"><span
+                            <a href="/users/{{ $user['id'] }}" class="badge bg-primary"><span
                                     data-feather="eye"></span></a>
                             <a href="/users/{{ $user['id'] }}/edit" class="badge bg-warning"><span
                                     data-feather="edit"></span></a>
