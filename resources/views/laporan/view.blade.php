@@ -10,27 +10,26 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <style>
+        th, h1, p {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <div class="row border-bottom mb-3">
-            {{-- <div class="col-lg-3 d-flex justify-content-center">
-                <img src={{ asset('img/Logo.png') }} alt="logo" width="100px">
-            </div> --}}
-            {{-- <div class="col-lg-9"> --}}
-                <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center">
                 <h1>Koperasi Artha Pratama</h1>
-                {{-- </div> --}}
-                {{-- <div class="d-flex justify-content-center"> --}}
-                    @if (empty($end))
-                        <p>{{ \Carbon\Carbon::parse($start)->format('F Y') }}</p>
-                    @else
-                        <p>{{ \Carbon\Carbon::parse($start)->format('F Y') }} -
-                            {{ \Carbon\Carbon::parse($end)->format('F Y') }}</p>
-                    @endif
-                </div>
-            {{-- </div> --}}
+                @if (empty($end))
+                    <p>{{ \Carbon\Carbon::parse($start)->format('F Y') }}</p>
+                @else
+                    <p>{{ \Carbon\Carbon::parse($start)->format('F Y') }} -
+                        {{ \Carbon\Carbon::parse($end)->format('F Y') }}</p>
+                @endif
+            </div>
         </div>
         <table class="table table-striped table-sm">
             <tr class="text-lg-center">

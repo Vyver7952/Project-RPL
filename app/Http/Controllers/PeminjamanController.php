@@ -19,7 +19,7 @@ class PeminjamanController extends Controller
     {
         return view('peminjaman.index', [
             "title" => "Peminjaman",
-            "peminjaman" => Peminjaman::search(request(['search', 'nasabah']))->orderby('tanggalPengajuan', 'desc')->paginate(10)
+            "peminjaman" => Peminjaman::search(request(['search', 'nasabah']))->latest()->paginate(10)
         ]);
     }
 
@@ -56,10 +56,10 @@ class PeminjamanController extends Controller
             $validatedData = $request->validate([
                 'nasabah_id' => 'required',
                 'nominal' => 'required|numeric',
-                'jangkaWaktu' => 'required'
-                // 'syaratPeminjaman' => 'required'
+                'jangkaWaktu' => 'required',
+                'syaratPeminjaman' => 'required|file|max:2048'
             ]);
-            $validatedData['tanggalPengajuan'] = now();
+            $validatedData['syaratPeminjaman'] = $request->file('syaratPeminjaman')->store('syarat-peminjaman');
             $validatedData['hasilKeputusan'] = false;
 
             Peminjaman::create($validatedData);
@@ -130,10 +130,6 @@ class PeminjamanController extends Controller
     public function update(Request $request, Peminjaman $peminjaman)
     {
         $rules = [
-            'nasabah_id' => 'required',
-            'nominal' => 'required',
-            'tanggalPengajuan' => 'required',
-            'jangkaWaktu' => 'required',
             'hasilKeputusan' => 'required|boolean'
         ];
         $validatedData = $request->validate($rules);

@@ -17,10 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('nasabah_id');
             $table->integer('nominal');
-            $table->timestamp('tanggalPengajuan');
             $table->integer('jangkaWaktu');
             $table->boolean('hasilKeputusan')->default(False);
-            // $table->text('syaratPeminjaman');
+            $table->text('syaratPeminjaman');
             $table->timestamps();
         });
     }

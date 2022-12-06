@@ -75,7 +75,7 @@
                         @enderror
                     </div>
                 </div>
-                {{-- <div class="mb-3">
+                <div class="mb-3">
                     <label for="syaratPeminjaman" class="form-label">Dokumen Peminjaman</label>
                     <div class="input-group">
                         <input type="file" class="form-control @error('syaratPeminjaman') is-invalid @enderror"
@@ -86,7 +86,7 @@
                             </div>
                         @enderror
                     </div>
-                </div> --}}
+                </div>
                 <div class="mb-3">
                     <label for="jangkaWaktu" class="form-label">Jangka Waktu</label>
                     <select class="form-select" name="jangkaWaktu">

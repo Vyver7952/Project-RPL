@@ -15,37 +15,23 @@
                     readonly>
             </div>
             <div class="mb-3">
-                <label for="nasabahidDummy" class="form-label">Nasabah</label>
-                <input type="text" class="form-control" id="nasabahidDummy" name="nasabahidDummy"
-                    value="{{ $peminjaman['nasabah']->nama }}" readonly>
+                <label for="nasabah_id" class="form-label">Nasabah</label>
                 <input type="text" class="form-control" id="nasabah_id" name="nasabah_id"
-                    value="{{ $peminjaman['nasabah']->id }}" readonly hidden>
+                    value="{{ $peminjaman['nasabah']->nama }}" readonly>
             </div>
             <div class="mb-3">
                 <label for="nominal" class="form-label">Nominal</label>
-                <input type="text" class="form-control" id="nominalDummy" name="nominalDummy" value="@convert($peminjaman['nominal'])"
+                <input type="text" class="form-control" id="nominal" name="nominal" value="@convert($peminjaman['nominal'])"
                     readonly>
-                <input type="number" class="form-control" id="nominal" name="nominal"
-                    value="{{ $peminjaman['nominal'] }}" readonly hidden>
             </div>
-            {{-- <div class="mb-3">
-                <label for="syaratPeminjaman" class="form-label">Dokumen Peminjaman</label>
-                <div class="input-group">
-                    <input type="file" class="form-control @error('syaratPeminjaman') is-invalid @enderror" id="syaratPeminjaman"
-                        name="syaratPeminjaman" readonly>
-                    @error('syaratPeminjaman')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-            </div> --}}
             <div class="mb-3">
-                <label for="tanggalPengajuanDummy" class="form-label">Tanggal Pengajuan</label>
-                <input type="text" class="form-control" id="tanggalPengajuanDummy" name="tanggalPengajuanDummy"
-                    value="{{ \Carbon\Carbon::parse($peminjaman['tanggalPengajuan'])->format('D, d M Y H:i:s') }}" readonly>
+                <label for="syaratPeminjaman" class="form-label">Dokumen Peminjaman</label>
+                <a href="{{ asset('storage/' . $peminjaman['syaratPeminjaman']) }}" class="btn btn-info">Show</a>
+            </div>
+            <div class="mb-3">
+                <label for="tanggalPengajuan" class="form-label">Tanggal Pengajuan</label>
                 <input type="text" class="form-control" id="tanggalPengajuan" name="tanggalPengajuan"
-                    value="{{ $peminjaman['tanggalPengajuan'] }}" readonly hidden>
+                    value="{{ \Carbon\Carbon::parse($peminjaman['created_at'])->format('D, d M Y H:i:s') }}" readonly>
             </div>
             <div class="mb-3">
                 <label for="jangkaWaktu" class="form-label">Jangka Waktu</label>

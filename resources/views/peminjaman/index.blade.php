@@ -49,7 +49,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $p['nasabah']->nama }}</td>
                         <td>@convert($p['nominal'])</td>
-                        <td>{{ \Carbon\Carbon::parse($p['tanggalPengajuan'])->format('D, d M Y H:i:s') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($p['created_at'])->format('D, d M Y H:i:s') }}</td>
                         <td>{{ $p['jangkaWaktu'] }}</td>
                         @if ($p->hasilKeputusan)
                             <td>Yes</td>
@@ -69,8 +69,6 @@
                                 <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span
                                         data-feather="trash-2"></button>
                             </form>
-                            {{-- <a href="/peminjaman/setor/{{ $p['id'] }}/edit" class="badge bg-success p-2"><span
-                                class="fa-solid fa-hand-holding-dollar fa-lg"></span> Setor Peminjaman</a> --}}
                         </td>
                     </tr>
                 @endforeach
