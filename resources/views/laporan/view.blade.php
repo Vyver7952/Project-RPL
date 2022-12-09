@@ -12,7 +12,9 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <style>
-        th, h1, p {
+        th,
+        h1,
+        p {
             text-align: center;
         }
     </style>
@@ -55,6 +57,17 @@
                 <td>@convert($totalPeminjaman)</td>
             </tr>
         </table>
+        <div class="row">
+            @if ($totalSimpanan > $totalPeminjaman)
+                <p>
+                    <strong>Profit</strong> @convert($totalSimpanan - $totalPeminjaman)
+                </p>
+            @else
+                <p>
+                    <strong>Defisit</strong> @convert($totalSimpanan - $totalPeminjaman)
+                </p>
+            @endif
+        </div>
     </div>
 </body>
 

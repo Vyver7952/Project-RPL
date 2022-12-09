@@ -120,6 +120,7 @@
             } else {
                 document.getElementById('nominalSetor').required = true;
                 document.getElementById('nominal').required = false;
+                document.getElementById('syaratPeminjaman').required = false;
                 tambah.style.display = 'none';
                 setor.style.display = 'block';
                 judul.innerHTML = '<b>Setor</b> Cicilan Peminjaman';

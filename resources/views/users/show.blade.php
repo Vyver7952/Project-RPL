@@ -10,7 +10,7 @@
             @csrf
             <div class="mb-3">
                 <label for="userid" class="form-label">User ID</label>
-                <input type="text" class="form-control" id="userid" name="userid" value="N-@Lpad($user['id'])" disabled>
+                <input type="text" class="form-control" id="userid" name="userid" value="U-@Lpad($user['id'])" disabled>
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Nama</label>
