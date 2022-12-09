@@ -47,7 +47,7 @@
                 <th colspan="2">Peminjaman</th>
             </tr>
             <tr>
-                <td>Jumlah Nasabah yang Menyetor Peminjaman</td>
+                <td>Jumlah Nasabah yang Melakukan Peminjaman</td>
                 <td>{{ $jumlahPeminjaman }} Nasabah</td>
             </tr>
             <tr>

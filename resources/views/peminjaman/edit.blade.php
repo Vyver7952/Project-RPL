@@ -26,7 +26,8 @@
             </div>
             <div class="mb-3">
                 <label for="syaratPeminjaman" class="form-label">Dokumen Peminjaman</label>
-                <a href="{{ asset('storage/' . $peminjaman['syaratPeminjaman']) }}" class="btn btn-info">Show</a>
+                <br>
+                <a href="{{ asset('storage/' . $peminjaman['syaratPeminjaman']) }}" class="btn bg-info text-white"><i class="bi bi-eye"></i> Show</a>
             </div>
             <div class="mb-3">
                 <label for="tanggalPengajuan" class="form-label">Tanggal Pengajuan</label>

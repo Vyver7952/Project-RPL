@@ -21,7 +21,7 @@ class PeminjamanFactory extends Factory
 
         return [
             'nominal' => $this->faker->numberBetween(),
-            'jangkaWaktu' => $this->faker->numberBetween(1, 24),
+            'jangkaWaktu' => $this->faker->randomElement([1, 3, 6, 8, 12]),
             'hasilKeputusan' => $this->faker->boolean(),
             'nasabah_id' => $this->faker->unique()->randomElement($nasabah)
         ];

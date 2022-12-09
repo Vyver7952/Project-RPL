@@ -18,7 +18,7 @@
                     @endforeach
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary" id="button">Tampilkan</button>
+            <button type="submit" class="btn btn-primary" id="button"><i class="bi bi-download"></i> Download</button>
         </form>
     </div>
 @endsection
