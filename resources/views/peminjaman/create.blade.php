@@ -79,7 +79,7 @@
                     <label for="syaratPeminjaman" class="form-label">Dokumen Peminjaman</label>
                     <div class="input-group">
                         <input type="file" class="form-control @error('syaratPeminjaman') is-invalid @enderror"
-                            id="syaratPeminjaman" name="syaratPeminjaman" required>
+                            id="syaratPeminjaman" name="syaratPeminjaman">
                         @error('syaratPeminjaman')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -112,6 +112,7 @@
         function handleRadioClick() {
             if (document.getElementById('pilihan_tambah').checked) {
                 document.getElementById('nominal').required = true;
+                document.getElementById('syaratPeminjaman').required = true;
                 document.getElementById('nominalSetor').required = false;
                 tambah.style.display = 'block';
                 setor.style.display = 'none';
