@@ -66,7 +66,7 @@ class SimpananController extends Controller
             } else if ($validatedData['status'] == 'Tarik') {
                 $validatedData['saldo'] = $saldo - $validatedData['saldo'];
                 if ($validatedData['saldo'] < 0) {
-                    $alert = "Saldo tidak memcukupi";
+                    $alert = "Saldo tidak mencukupi";
                     return redirect('/simpanan/create')->with('alert', $alert);
                 }
             }
